@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putunsgnbr_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgarcia3 <jgarcia3@student.42madrid>       +#+  +:+       +#+        */
+/*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:12:58 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/02/07 12:22:51 by jgarcia3         ###   ########.fr       */
+/*   Created: 2024/02/22 11:51:39 by jgarcia3          #+#    #+#             */
+/*   Updated: 2024/02/22 17:03:35 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	ft_pow(int n, int m)
+static int	ft_pow(unsigned int n, int m)
 {
 	int	i;
 	int	result;
@@ -31,13 +31,11 @@ static int	ft_pow(int n, int m)
 	return (result);
 }
 
-static int	num_len(int n)
+static int	num_len(unsigned int n)
 {
 	long	j;
 	int		len;
-	int		neg;
 
-	neg = 0;
 	j = 1;
 	len = 0;
 	while ((long)n / j != 0)
@@ -52,7 +50,7 @@ static int	num_len(int n)
 	return (len);
 }
 
-static long	n_to_exp(int n)
+static long	n_to_exp(unsigned int n)
 {
 	long	a;
 
@@ -62,28 +60,17 @@ static long	n_to_exp(int n)
 	return (a);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putunsgnbr_fd(unsigned int n, int fd)
 {
 	int		i;
 	char	ret;
 	long	exp;
-	char	neg;
 
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-	}
 	i = 0;
 	exp = n_to_exp(n);
-	neg = '-';
-	if (n < 0 && n != -2147483648)
+	while (i < (int)num_len(n))
 	{
-		write(fd, &neg, 1);
-		i++;
-	}
-	while (i < (int)num_len(n) && n != -2147483648)
-	{
-		ret = 48 + ((abs(n) % exp) / ft_pow(10, (num_len(n) - (i + 1))));
+		ret = 48 + ((n % exp) / ft_pow(10, (num_len(n) - (i + 1))));
 		write(fd, &ret, 1);
 		exp /= 10;
 		i++;
@@ -93,5 +80,5 @@ void	ft_putnbr_fd(int n, int fd)
 /*
 int	main()
 {
-	ft_putnbr_fd(-2147483648, 1);
+    ft_putunsgnbr_fd(4294967290, 1);
 }*/

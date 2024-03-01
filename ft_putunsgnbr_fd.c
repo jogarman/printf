@@ -6,7 +6,7 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:51:39 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/02/22 17:03:35 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/02/29 09:34:03 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static long	n_to_exp(unsigned int n)
 	return (a);
 }
 
-void	ft_putunsgnbr_fd(unsigned int n, int fd)
+int	ft_putunsgnbr_fd(unsigned int n, int fd)
 {
 	int		i;
 	char	ret;
@@ -75,6 +75,7 @@ void	ft_putunsgnbr_fd(unsigned int n, int fd)
 		exp /= 10;
 		i++;
 	}
+	return (i);
 }
 
 /*

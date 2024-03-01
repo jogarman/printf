@@ -7,7 +7,8 @@ CFLAGS = -Wall -Wextra -Werror
 SRC = ft_printf.c \
 ft_dec_to_hex.c \
 ft_putunsgnbr_fd.c \
-ft_convertor.c
+ft_convertor.c \
+ft_convertor2.c
 
 OBJ = $(SRC:.c=.o)
 

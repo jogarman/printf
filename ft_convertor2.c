@@ -1,55 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convertor.c                                     :+:      :+:    :+:   */
+/*   ft_convertor2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 01:00:48 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/02/29 09:18:01 by jgarcia3         ###   ########.fr       */
+/*   Created: 2024/02/28 20:04:45 by jgarcia3          #+#    #+#             */
+/*   Updated: 2024/03/01 15:28:40 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	num_len(int n)
+int		wf_unsg(unsigned int a)
 {
-	long	j;
-	int		len;
-	int		neg;
-
-	neg = 0;
-	j = 1;
-	len = 0;
-	while ((long)n / j != 0)
-	{
-		j *= 10;
-		len ++;
-	}
-	if (n < 0)
-		len++;
-	if (n == 0)
-		len = 1;
-	return (len);
+	return (ft_putunsgnbr_fd(a, 1));
 }
 
-int	wf_char(char a)
+size_t	wf_x_lw(unsigned int a)
 {
-	return (ft_putchar_fd(a, 1), 1);
+	return (ft_dec_to_hex(a, 0));
 }
 
-int	wf_str(char *a)
+size_t	wf_x_up(unsigned int a)
 {
-	if (a == NULL)
-	{	write(1, "(null)", 6);
-		return (6);
-	}
-	write(1, a, ft_strlen(a));
-	return (ft_strlen(a));
+	return (ft_dec_to_hex(a, 1));
 }
 
-int	wf_int(int a)
+size_t	wf_ptr(size_t a)
 {
-	ft_putnbr_fd((a), 1);
-	return (num_len(a));
+	write(1, "0x", 2);
+	return (ft_dec_to_hex(a, 0) + 2);
 }

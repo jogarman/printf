@@ -6,27 +6,11 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:48:00 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/01 15:27:37 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:25:06 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-cc -Wextra -Werror -Wall *.c ./libft/asterisco.c
-*/
-/*
-v  %c Imprime un solo carácter.
-v  %s Imprime una string (como se define por defecto en C).
-v %d Imprime un número decimal (base 10).
-• %i Imprime un entero en base 10.
-• %u Imprime un número decimal (base 10) sin signo.
-• %x Imprime un número hexadecimal (base 16) en minúsculas.
-• %X Imprime un número hexadecimal (base 16) en mayúsculas.
-  **%p El puntero void * dado como argumento se imprime en formato hexadecimal.
-• % % para imprimir el símbolo del porcentaje.
-*/
-
-//static void ft_change_base();
 
 static int	ft_which_format(char c, va_list argument)
 {
@@ -34,20 +18,25 @@ static int	ft_which_format(char c, va_list argument)
 
 	s = NULL;
 	if (c == 'c')
-		return(wf_char(va_arg(argument, int)));
+		return (wf_char(va_arg(argument, int)));
 	else if (c == 's')
-		return(wf_str(va_arg(argument, char *)));
+		return (wf_str(va_arg(argument, char *)));
 	else if (c == 'd' || c == 'i')
-		return(wf_int(va_arg(argument, int)));
+		return (wf_int(va_arg(argument, int)));
 	else if (c =='u')
-		return(wf_unsg(va_arg(argument, unsigned int)));
+		return (wf_unsg(va_arg(argument, unsigned int)));
 	else if (c == 'x')
-		return(wf_x_lw(va_arg(argument, unsigned int)));
+		return (wf_x_lw(va_arg(argument, unsigned int)));
 	else if (c == 'X')
-		return(wf_x_up(va_arg(argument, unsigned int)));
+		return (wf_x_up(va_arg(argument, unsigned int)));
 	else if (c == 'p')
-		return(wf_ptr(va_arg(argument, size_t)));
+		return (wf_ptr(va_arg(argument, size_t)));
 	return (-1);
+}
+static void	aux(char *ptr, int *n_charact)
+{
+	write(1, ptr, 1);
+	*n_charact += 1;
 }
 
 int	ft_printf(char const *str, ...)
@@ -59,30 +48,20 @@ int	ft_printf(char const *str, ...)
 	n_charact = 0;
 	i = 0;
 	va_start(args, str);
-	while (str[i]) //&& (str[i - 1] == '%' && str[i + 1] == '\0')) No funciona
+	while (str[i])
 	{
 		if (str[i] != '%')
-		{
-			if ((i == 0) || (i >= 1 && str[i - 1] != '%')) // CAMBIAR?
-			{
-				write(1, &str[i], 1);
-				n_charact++;
-				//printf("n_caracter1: %d", n_charact);
-			}
-		}
+			aux((char*)&str[i], &n_charact);
 		else if(str[i + 1])
 		{
-			if (str[i + 1] == '%')
+			if (str[i] == '%' && str[i + 1] == '%')
 			{
 				write(1, "%", 1);
 				n_charact++;
-				//printf("n_caracter2: %d", n_charact);
 			}
 			else
-			{
 				n_charact += ft_which_format(str[i + 1], args);
-				//printf("n_caracter3: %d", n_charact);
-			}
+			i++;
 		}
 		i++;
 	}
@@ -92,33 +71,14 @@ int	ft_printf(char const *str, ...)
 /* #include <limits.h>
 int main()
 {
-    printf("\n%d\n", printf(" %x ", LONG_MAX));
-	printf("\n%d\n", ft_printf(" %x ", LONG_MAX));
+    printf("\n%d\n", printf("\001\002\007\v\010\f\r\n"));
+	printf("%d", ft_printf("\001\002\007\v\010\f\r\n"));
 } */
 /*
-	Paco no pasa el test 24, 25, 27 y 29 por esto. Pero la función original no puede compilar sin un casteo a void *.
-	Mi funcion funcion con el casteo y sin el casteo, luego está mejor.
-    printf("\n%d\n", printf(" %p ", (void *)LONG_MAX)); // Me explota la cabeza
-	printf("\n%d\n", ft_printf(" %p ", (void *)LONG_MAX)); //Si le quito el void el mio funciona y el suyo no
-*/
-
+It should return -1 if write() fails, but  it is not mandatory for the exercice
+ */
 /*
-NI IDEA-> printf(" %p %p ", LONG_MIN, LONG_MAX);
-30:     TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
-32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
-
-*/
-/*
-ERRORES:
-
-47:     TEST(23, print(" %x ", INT_MIN));
-48:     TEST(24, print(" %x ", LONG_MAX));
-50:     TEST(26, print(" %x ", UINT_MAX));
-51:     TEST(27, print(" %x ", ULONG_MAX));
-52:     TEST(28, print(" %x ", 9223372036854775807LL));
-*/
-/*
-	////simpple debugger:
+	////simple debugger:
 	//ft_printf("Numero %d", 7);
 	printf("\n%d\n", ft_printf("c:%c", 'C')); //bien
 	printf("\n%d\n", ft_printf("str:%s", "caca")); // bien

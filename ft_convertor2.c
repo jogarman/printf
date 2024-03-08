@@ -6,13 +6,13 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 20:04:45 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/01 15:28:40 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:54:33 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		wf_unsg(unsigned int a)
+int	wf_unsg(unsigned int a)
 {
 	return (ft_putunsgnbr_fd(a, 1));
 }

@@ -6,7 +6,7 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:48:00 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/02 18:25:06 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:02:06 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_which_format(char c, va_list argument)
 		return (wf_str(va_arg(argument, char *)));
 	else if (c == 'd' || c == 'i')
 		return (wf_int(va_arg(argument, int)));
-	else if (c =='u')
+	else if (c == 'u')
 		return (wf_unsg(va_arg(argument, unsigned int)));
 	else if (c == 'x')
 		return (wf_x_lw(va_arg(argument, unsigned int)));
@@ -33,6 +33,7 @@ static int	ft_which_format(char c, va_list argument)
 		return (wf_ptr(va_arg(argument, size_t)));
 	return (-1);
 }
+
 static void	aux(char *ptr, int *n_charact)
 {
 	write(1, ptr, 1);
@@ -41,7 +42,7 @@ static void	aux(char *ptr, int *n_charact)
 
 int	ft_printf(char const *str, ...)
 {
-	va_list args;
+	va_list	args;
 	int		i;
 	int		n_charact;
 
@@ -51,8 +52,8 @@ int	ft_printf(char const *str, ...)
 	while (str[i])
 	{
 		if (str[i] != '%')
-			aux((char*)&str[i], &n_charact);
-		else if(str[i + 1])
+			aux((char *)&str[i], &n_charact);
+		else if (str[i + 1])
 		{
 			if (str[i] == '%' && str[i + 1] == '%')
 			{
@@ -68,12 +69,13 @@ int	ft_printf(char const *str, ...)
 	return (n_charact);
 }
 
-/* #include <limits.h>
+/*
+#include <limits.h>
 int main()
 {
     printf("\n%d\n", printf("\001\002\007\v\010\f\r\n"));
 	printf("%d", ft_printf("\001\002\007\v\010\f\r\n"));
-} */
+}*/
 /*
 It should return -1 if write() fails, but  it is not mandatory for the exercice
  */

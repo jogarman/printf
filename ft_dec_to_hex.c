@@ -6,14 +6,13 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:32:54 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/02/29 10:07:22 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:55:00 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* return n of  characters and print in hexa n given */
 
 #include "ft_printf.h"
-
 
 size_t	ft_dec_to_hex(size_t n, int caps)
 {
@@ -34,7 +33,6 @@ size_t	ft_dec_to_hex(size_t n, int caps)
 	}
 	ret += ft_dec_to_hex(n / 16, caps);
 	ret += ft_dec_to_hex(n % 16, caps);
-
 	return (ret);
 }
 

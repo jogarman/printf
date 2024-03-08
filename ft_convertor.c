@@ -6,7 +6,7 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 01:00:48 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/02/29 09:18:01 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:54:00 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	wf_char(char a)
 int	wf_str(char *a)
 {
 	if (a == NULL)
-	{	write(1, "(null)", 6);
+	{
+		write(1, "(null)", 6);
 		return (6);
 	}
 	write(1, a, ft_strlen(a));

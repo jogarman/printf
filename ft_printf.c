@@ -6,7 +6,7 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 20:48:00 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/08 12:02:06 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/03/12 21:08:29 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_which_format(char c, va_list argument)
 		return (wf_x_up(va_arg(argument, unsigned int)));
 	else if (c == 'p')
 		return (wf_ptr(va_arg(argument, size_t)));
-	return (-1);
+	return (0);
 }
 
 static void	aux(char *ptr, int *n_charact)
@@ -69,13 +69,12 @@ int	ft_printf(char const *str, ...)
 	return (n_charact);
 }
 
-/*
-#include <limits.h>
+/* #include <limits.h>
 int main()
 {
     printf("\n%d\n", printf("\001\002\007\v\010\f\r\n"));
 	printf("%d", ft_printf("\001\002\007\v\010\f\r\n"));
-}*/
+} */
 /*
 It should return -1 if write() fails, but  it is not mandatory for the exercice
  */

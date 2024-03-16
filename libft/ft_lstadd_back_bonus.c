@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convertor2.c                                    :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 20:04:45 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/12 20:14:59 by jgarcia3         ###   ########.fr       */
+/*   Created: 2024/02/08 10:34:40 by jgarcia3          #+#    #+#             */
+/*   Updated: 2024/02/13 18:49:33 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	wf_unsg(unsigned int a)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	return (ft_putunsgnbr_fd(a, 1));
-}
+	t_list	*temp;
 
-size_t	wf_x_lw(unsigned int a)
-{
-	return (ft_dec_to_hex(a, 0));
-}
-
-size_t	wf_x_up(unsigned int a)
-{
-	return (ft_dec_to_hex(a, 1));
-}
-
-size_t	wf_ptr(size_t a)
-{
-	write(1, "0x", 2);
-	return (ft_dec_to_hex(a, 0) + 2);
+	if (*lst == NULL)
+	{
+		*lst = new;
+	}
+	else
+	{
+		temp = *lst;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = new;
+	}
 }

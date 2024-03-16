@@ -6,11 +6,11 @@
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:12:58 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/02 18:44:01 by jgarcia3         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:31:41 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static int	ft_pow(int n, int m)
 {

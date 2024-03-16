@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jgarcia3 <jgarcia3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 15:09:22 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/02 18:44:08 by jgarcia3         ###   ########.fr       */
+/*   Created: 2024/01/16 14:55:16 by jgarcia3          #+#    #+#             */
+/*   Updated: 2024/01/16 15:06:12 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_isprint(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (*s && s[i] != '\0')
+	if (c >= 32 && c <= 126)
 	{
-		i++;
+		return (1);
 	}
-	return (i);
+	return (0);
 }
 
 /*
-int main(void)
+int	main(void)
 {
-	printf("%zu", ft_strlen(""));
+	printf("%d", ft_isprint(3));
 }*/

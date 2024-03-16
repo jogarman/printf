@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convertor2.c                                    :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgarcia3 <jgarcia3@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 20:04:45 by jgarcia3          #+#    #+#             */
-/*   Updated: 2024/03/12 20:14:59 by jgarcia3         ###   ########.fr       */
+/*   Created: 2024/02/08 09:59:56 by jgarcia3          #+#    #+#             */
+/*   Updated: 2024/02/13 17:38:39 by jgarcia3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	wf_unsg(unsigned int a)
+int	ft_lstsize(t_list *lst)
 {
-	return (ft_putunsgnbr_fd(a, 1));
-}
+	int	i;
 
-size_t	wf_x_lw(unsigned int a)
-{
-	return (ft_dec_to_hex(a, 0));
-}
-
-size_t	wf_x_up(unsigned int a)
-{
-	return (ft_dec_to_hex(a, 1));
-}
-
-size_t	wf_ptr(size_t a)
-{
-	write(1, "0x", 2);
-	return (ft_dec_to_hex(a, 0) + 2);
+	i = 1;
+	if (lst == NULL)
+	{
+		return (0);
+	}
+	while (lst->next != '\0')
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
